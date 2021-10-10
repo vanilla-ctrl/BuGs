@@ -1,0 +1,1 @@
+#Login with a valid username (use random password) ~ inspect the response ~ change "login: false" to true, auth bypass, that leads to PII disclosure,BAC
