@@ -1,6 +1,7 @@
 # always when you found API endpoint like "/api/v4/anything" add "internal" to the route and you will be surprised Smiling face with open mouth for example :
 /api/v4/users/<userid> =>> 403
 /api/v4/internal/users/<userid> =>> 200
+---https://twitter.com/XHackerx007/status/1435139576314671105
 ------org,users,site:target.com keywords-------
 Jenkins
 OTP
