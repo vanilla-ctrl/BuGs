@@ -1,0 +1,10 @@
+----Signature not being chacked------
+Capture the request--->SAML req and response decode--->change the nameID parameter--->check response in broser
+---Signature not being checked when it does not exist
+Capture SAML response--->remove signature---change email...
+---Comment Injection----
+--Register as <!--notadmin-->@test.com--->decode as base64--->we are logged in as admin@test.com beacuse comment are ignored by saml processor
+----SAML REplay and XXE
+Attacker can login as victim multiple times using XML external entity injection
+
+
