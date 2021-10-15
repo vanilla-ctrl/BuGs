@@ -1,0 +1,5 @@
+Simply give the curl command: curl -X PURGE https://target.com
+
+If it is vulnerable it will look like this:
+Vulnerable { status:ok id:""}
+ref: https://sapt.medium.com/apple-hall-of-fame-for-a-small-misconfiguration-unauth-cache-purging-faf81b19419b
