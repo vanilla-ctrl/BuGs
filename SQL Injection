@@ -1,3 +1,13 @@
+Boolean-based blind
+Error based
+Union query based
+stack queries 
+Time based blind
+Inline queries
+
+
+
+
 https://sapt.medium.com/sqli-on-a-bugcrowd-private-program-17858b57ec61
 So during recon I had already sorted the urls with params which might be vulnerable to SQL Injection(using gf). So I then started opening those one by one to see which ones were actually active and worth trying for, and side by side each time I was replacing the parameter value with the sleep payload ,(select * from (select(sleep(20)))a) , so basically I was trying to find Time Based SQLi because putting all of the urls in sqlmap is very much time consuming.
 
